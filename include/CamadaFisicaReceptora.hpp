@@ -1,19 +1,19 @@
 class CamadaFisicaReceptora {
 public:
-    virtual int *execute(int *) = 0;
+    virtual uint8_t *execute(uint8_t *) = 0;
 };
 
 class CFRBinaria : public CamadaFisicaReceptora {
 public:
-    int* execute(int *) override;
+    uint8_t* execute(uint8_t *) override;
 };
 
 class CFRManchester : public CamadaFisicaReceptora {
 public:
-    int* execute(int *) override;
+    uint8_t* execute(uint8_t *) override;
 };
 
 class CFRManchesterDiferencial : public CamadaFisicaReceptora {
 public:
-    int* execute(int *) override;
+    uint8_t* execute(uint8_t *) override;
 };

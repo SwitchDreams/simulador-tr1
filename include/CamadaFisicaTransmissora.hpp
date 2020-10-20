@@ -2,21 +2,21 @@
 
 class CamadaFisicaTransmissora {
 public:
-    virtual int *execute(int *) = 0;
+    virtual uint8_t *execute(uint8_t *) = 0;
 };
 
 class CFTBinaria : public CamadaFisicaTransmissora {
 public:
-    int* execute(int * mensagem) override;
+    uint8_t* execute(uint8_t * mensagem) override;
 };
 
 class CFTManchester : public CamadaFisicaTransmissora {
 public:
-    int* execute(int *) override;
+    uint8_t* execute(uint8_t *) override;
 };
 
 class CFTManchesterDiferencial : public CamadaFisicaTransmissora {
 public:
-    int* execute(int *) override;
+    uint8_t* execute(uint8_t *) override;
 };
 

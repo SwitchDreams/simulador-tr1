@@ -2,7 +2,7 @@
 
 #include <string>
 
-void printMenu();
+int printMenu();
 
 void setBit(uint8_t *A, unsigned int k);
 

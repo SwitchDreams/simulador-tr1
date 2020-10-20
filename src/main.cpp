@@ -15,10 +15,7 @@ int main() {
     cout << "Digite a mensagem que deseja transmitir: " << endl << endl;
     getline(cin, mensagem);
 
-    printMenu();
-    cin >> tipo_codigo;
-
-    cout << tipo_codigo;
+    tipo_codigo = printMenu();
 
     // TODO Selecionar codificação
     CamadaFisicaTransmissora *transmissora = new CFTBinaria();

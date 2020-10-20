@@ -2,6 +2,8 @@
 
 #include <string>
 
+void printMenu();
+
 void setBit(uint8_t *A, unsigned int k);
 
 void clearBit(uint8_t *A, unsigned int k);

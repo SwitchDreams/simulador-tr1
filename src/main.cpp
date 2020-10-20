@@ -7,9 +7,19 @@
 using namespace std;
 
 int main() {
+
     string mensagem;
-    cout << "Digite a sua mensagem" << endl;
-    cin >> mensagem;
+    int tipo_codigo;
+
+    std::system("clear");
+    cout << "Digite a mensagem que deseja transmitir: " << endl << endl;
+    getline(cin, mensagem);
+
+    printMenu();
+    cin >> tipo_codigo;
+
+    cout << tipo_codigo;
+
     // TODO Selecionar codificação
     CamadaFisicaTransmissora *transmissora = new CFTBinaria();
     CamadaFisicaReceptora *receptora = new CFRBinaria();

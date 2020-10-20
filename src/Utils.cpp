@@ -2,6 +2,14 @@
 #include <iostream>
 #include "../include/Utils.hpp"
 
+void printMenu() {
+    std::cout << std::endl << "Tipos de codificação: " << std::endl << std::endl;
+    std::cout << "0) Codificação Binária" << std::endl;
+    std::cout << "1) Codificação Manchester" << std::endl;
+    std::cout << "2) Codificação Manchester Diferencial" << std::endl << std::endl;
+    std::cout << "Digite o tipo de codificação que iremos utilizar: ";
+}
+
 void setBit(uint8_t *A, unsigned int k) {
     A[k / BIT_SIZE] |= 1 << (k % BIT_SIZE);  // Set the bit at the k-th position in A[i]
 }

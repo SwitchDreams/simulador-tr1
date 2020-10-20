@@ -7,9 +7,7 @@ public:
 
 class CFTBinaria : public CamadaFisicaTransmissora {
 public:
-    inline int* execute(int * mensagem) override {
-        //std::cout << *mensagem << std::endl;
-    }
+    int* execute(int * mensagem) override;
 };
 
 class CFTManchester : public CamadaFisicaTransmissora {

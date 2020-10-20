@@ -3,4 +3,5 @@ project(simulador-camada-fisica)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Main src/main.cpp)
+add_executable(Main src/main.cpp src/Utils.cpp)
+add_executable(Test src/test/UtilsTest.cpp src/Utils.cpp)

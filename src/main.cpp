@@ -17,14 +17,13 @@ int main() {
     getline(cin, mensagem);
 
     tipo_codigo = printMenu();
+    BitArray ba = BitArray(mensagem);
 
     // TODO Selecionar codificação
     CamadaFisicaTransmissora *transmissora = new CFTBinaria();
     CamadaFisicaReceptora *receptora = new CFRBinaria();
 
-    BitArray ba =  BitArray(mensagem);
-    ba.print();
+    receptora->execute(transmissora->execute(&ba));
 
-    // cout << receptora->execute(transmissora->execute(stringToBinary(mensagem))) << std::endl;
     return 0;
 }

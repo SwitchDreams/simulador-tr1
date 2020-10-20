@@ -1,3 +1,6 @@
+#ifndef BIT_ARRAY
+#define BIT_ARRAY
+
 #include <stdlib.h>
 #include <string>
 
@@ -16,7 +19,8 @@ public:
 
     int operator [] (unsigned int);
 
-    // uint8_t &operator [] (unsigned int);
     void print();
 
 };
+
+#endif // BIT_ARRAY

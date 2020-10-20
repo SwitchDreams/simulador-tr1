@@ -1,23 +1,25 @@
 #include <iostream>
 #include "Utils.hpp"
+#include "BitArray.hpp"
+
 
 class CamadaFisicaTransmissora {
 public:
-    virtual uint8_t *execute(uint8_t *) = 0;
+    virtual BitArray *execute(BitArray *) = 0;
 };
 
 class CFTBinaria : public CamadaFisicaTransmissora {
 public:
-    uint8_t* execute(uint8_t * mensagem) override;
+    BitArray* execute(BitArray * mensagem) override;
 };
 
 class CFTManchester : public CamadaFisicaTransmissora {
 public:
-    uint8_t* execute(uint8_t *) override;
+    BitArray* execute(BitArray *) override;
 };
 
 class CFTManchesterDiferencial : public CamadaFisicaTransmissora {
 public:
-    uint8_t* execute(uint8_t *) override;
+    BitArray* execute(BitArray *) override;
 };
 

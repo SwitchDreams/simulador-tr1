@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Utils.hpp"
 
 class CamadaFisicaTransmissora {
 public:

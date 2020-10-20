@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <iostream>
 #include "../include/Utils.hpp"
 
 void setBit(uint8_t *A, unsigned int k) {
@@ -13,7 +14,7 @@ int getBit(uint8_t *A, unsigned int k) {
     return ((A[k / BIT_SIZE] & (1 << (k % BIT_SIZE))) != 0);
 }
 
-uint8_t *stringToBinary(const std::string& mensagem) {
+uint8_t *stringToBinary(const std::string &mensagem) {
     auto array = (uint8_t *) malloc(mensagem.length() * sizeof(uint8_t));
     int cont = 0;
     for (char letra : mensagem) {
@@ -22,3 +23,12 @@ uint8_t *stringToBinary(const std::string& mensagem) {
     }
     return array;
 }
+
+void printBinaryArray(uint8_t *array) {
+    for (unsigned int i = 0; i < sizeof(array); i++) {
+        for (unsigned int j = 0; j < 8; j++) {
+            std::cout << getBit(&array[i], j);
+        }
+    }
+}
+

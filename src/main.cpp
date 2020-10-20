@@ -3,6 +3,7 @@
 #include "../include/CamadaFisicaReceptora.hpp"
 #include "../include/CamadaFisicaTransmissora.hpp"
 #include "../include/Utils.hpp"
+#include "../include/BitArray.hpp"
 
 using namespace std;
 
@@ -20,6 +21,11 @@ int main() {
     // TODO Selecionar codificação
     CamadaFisicaTransmissora *transmissora = new CFTBinaria();
     CamadaFisicaReceptora *receptora = new CFRBinaria();
-    cout << receptora->execute(transmissora->execute(stringToBinary(mensagem))) << std::endl;
+
+    BitArray *ba = new BitArray(mensagem);
+
+    ba->print();
+
+    // cout << receptora->execute(transmissora->execute(stringToBinary(mensagem))) << std::endl;
     return 0;
 }

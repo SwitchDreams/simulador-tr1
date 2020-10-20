@@ -3,5 +3,5 @@ project(simulador-camada-fisica)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Main src/main.cpp src/Utils.cpp src/CamadaFisicaReceptora.cpp src/CamadaFisicaTransmissora.cpp)
-add_executable(Test src/test/UtilsTest.cpp src/Utils.cpp)
+add_executable(Main src/main.cpp src/Utils.cpp src/CamadaFisicaReceptora.cpp src/CamadaFisicaTransmissora.cpp src/BitArray.cpp)
+add_executable(Test src/test/BitArrayTest.cpp src/BitArray.cpp)

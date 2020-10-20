@@ -1,17 +1,16 @@
-#include <cstdint>
 #include "../include/CamadaFisicaTransmissora.hpp"
 
-uint8_t *CFTBinaria::execute(uint8_t *quadro) {
+BitArray *CFTBinaria::execute(BitArray *quadro) {
     std::cout << "Codificação Binária:";
-    printBinaryArray(quadro);
+    quadro->print();
     std::cout << std::endl;
     return quadro;
 }
 
-uint8_t *CFTManchester::execute(uint8_t *) {
+BitArray *CFTManchester::execute(BitArray *) {
     return nullptr;
 }
 
-uint8_t *CFTManchesterDiferencial::execute(uint8_t *) {
+BitArray *CFTManchesterDiferencial::execute(BitArray *) {
     return nullptr;
 }

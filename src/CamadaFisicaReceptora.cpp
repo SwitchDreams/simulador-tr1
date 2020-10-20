@@ -1,18 +1,17 @@
-#include <cstdint>
 #include <iostream>
 #include "../include/CamadaFisicaReceptora.hpp"
 
-uint8_t *CFRBinaria::execute(uint8_t *quadro) {
+BitArray *CFRBinaria::execute(BitArray *quadro) {
     std::cout << "Decodificação Binária:";
-    printBinaryArray(quadro);
+    quadro->print();
     std::cout << std::endl;
     return quadro;
 }
 
-uint8_t *CFRManchester::execute(uint8_t *) {
+BitArray *CFRManchester::execute(BitArray *) {
     return nullptr;
 }
 
-uint8_t *CFRManchesterDiferencial::execute(uint8_t *) {
+BitArray *CFRManchesterDiferencial::execute(BitArray *) {
     return nullptr;
 }

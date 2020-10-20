@@ -22,9 +22,8 @@ int main() {
     CamadaFisicaTransmissora *transmissora = new CFTBinaria();
     CamadaFisicaReceptora *receptora = new CFRBinaria();
 
-    BitArray *ba = new BitArray(mensagem);
-
-    ba->print();
+    BitArray ba =  BitArray(mensagem);
+    ba.print();
 
     // cout << receptora->execute(transmissora->execute(stringToBinary(mensagem))) << std::endl;
     return 0;

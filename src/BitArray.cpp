@@ -33,7 +33,7 @@ int BitArray::operator [] (unsigned int k) {
 void BitArray::print() {
     for (unsigned int i = 0; i < this->lenght; i++) {
         for (unsigned int j = 0; j < BIT_SIZE; j++) {
-            cout << this->container[j];
+            cout << (*this)[j];
         }
     }
     cout << endl;

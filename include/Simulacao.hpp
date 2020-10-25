@@ -1,3 +1,6 @@
+#ifndef SIMULACAO_HPP
+#define SIMULACAO_HPP
+
 #include "../include/CamadaFisicaTransmissora.hpp"
 #include "../include/CamadaFisicaReceptora.hpp"
 #include "../include/BitArray.hpp"
@@ -5,9 +8,11 @@
 #include <iostream>
 
 class Simulacao {
+private:
     CamadaFisicaTransmissora* transmissora;
     CamadaFisicaReceptora* receptora;
 
+public:
     Simulacao(int);
     ~Simulacao();
 
@@ -22,3 +27,5 @@ class Simulacao {
     void camadaDeAplicacaoReceptora(BitArray*);
     void camadaFisicaReceptora(BitArray*);
 };
+
+#endif // SIMULACAO_HPP

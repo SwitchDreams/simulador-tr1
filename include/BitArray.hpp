@@ -1,5 +1,5 @@
-#ifndef BIT_ARRAY
-#define BIT_ARRAY
+#ifndef BIT_ARRAY_HPP
+#define BIT_ARRAY_HPP
 
 #include <stdlib.h>
 #include <string>
@@ -77,4 +77,4 @@ public:
 
 };
 
-#endif // BIT_ARRAY
+#endif // BIT_ARRAY_HPP

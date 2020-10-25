@@ -56,7 +56,7 @@ void Simulacao::camadaFisicaReceptora(BitArray* fluxoBrutoDeBitsPontoB) {
 }
 
 void Simulacao::camadaDeAplicacaoReceptora(BitArray* fluxoBrutoDeBits) {
-    string mensagem = fluxoBrutoDeBits.toString();
+    string mensagem = fluxoBrutoDeBits->toString();
 
     cout << "A mensagem recebida foi: " << mensagem << endl;
 }

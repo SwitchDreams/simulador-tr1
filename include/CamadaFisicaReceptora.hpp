@@ -1,3 +1,6 @@
+#ifndef CFR_HPP
+#define CFR_HPP
+
 #include "Utils.hpp"
 #include "BitArray.hpp"
 
@@ -20,3 +23,5 @@ class CFRManchesterDiferencial : public CamadaFisicaReceptora {
 public:
     BitArray *execute(BitArray *) override;
 };
+
+#endif // CFR_HPP

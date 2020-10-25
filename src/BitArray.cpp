@@ -40,7 +40,7 @@ int BitArray::operator[](unsigned int k) {
     return (container[k / BYTE_SIZE] & (1 << (k % BYTE_SIZE))) != 0;
 }
 
-void BitArray::operator= (BitArray &ba) {
+void BitArray::operator=(const BitArray &ba) {
     // Copia as informações de &ba para *this
     lenght = ba.lenght;
     for (int i = 0; i < ba.lenght; i++) {
@@ -51,8 +51,8 @@ void BitArray::operator= (BitArray &ba) {
 string BitArray::toString() {
     // Para cada elemento do array (um byte), converte para char e coloca no final da string de retorno
     string message;
-    for (u_int8_t byte : this->container) {
-        message.push_back((char) byte);
+    for (int byte = 0; byte < this->lenght; byte++) {
+        message.push_back((char) this->container[byte]);
     }
 
     return message;

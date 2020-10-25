@@ -1,3 +1,6 @@
+#ifndef CFT_HPP
+#define CFT_HPP
+
 #include <iostream>
 #include "Utils.hpp"
 #include "BitArray.hpp"
@@ -23,3 +26,4 @@ public:
     BitArray* execute(BitArray *) override;
 };
 
+#endif // CFT_HPP

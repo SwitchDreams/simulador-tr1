@@ -7,14 +7,18 @@
 class Simulacao {
     CamadaFisicaTransmissora* transmissora;
     CamadaFisicaReceptora* receptora;
-    BitArray* mensagem;
 
     Simulacao(int);
     ~Simulacao();
 
+    /**** Transmissão ****/
     void camadaDeAplicacaoTransmissora(std::string);
-    void camadaDeAplicacaoReceptora();
-    void meioDeComunicacao();
-    void camadaFisicaTransmissora();
-    void camadaFisicaReceptora();
+    void camadaFisicaTransmissora(BitArray*);
+
+    /**** Comunicação ****/
+    void meioDeComunicacao(BitArray*);
+
+    /**** Recepção ****/
+    void camadaDeAplicacaoReceptora(BitArray*);
+    void camadaFisicaReceptora(BitArray*);
 };

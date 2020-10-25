@@ -1,5 +1,7 @@
 #include "../include/Simulacao.hpp"
 
+using namespace std;
+
 Simulacao::Simulacao(int tipo_codificacao) {
     switch(tipo_codificacao) {
         case 1:
@@ -11,7 +13,7 @@ Simulacao::Simulacao(int tipo_codificacao) {
             receptora = new CFRManchesterDiferencial();
             break;
         default:
-            std::cout << "Tipo de codificação inválido (Utilizamos o tipo de codificação binária)" << std::endl;
+            cout << "Tipo de codificação inválido (Utilizamos o tipo de codificação binária)" << endl;
         case 0:
             transmissora = new CFTBinaria();
             receptora = new CFRBinaria();
@@ -19,26 +21,46 @@ Simulacao::Simulacao(int tipo_codificacao) {
     }
 }
 
-Simulacao::~Simulacao() {
-
-}
+Simulacao::~Simulacao() {}
 
 /******************** Transmissão ********************/
 
-void Simulacao::camadaDeAplicacaoTransmissora(std::string mensagem) {}
+void Simulacao::camadaDeAplicacaoTransmissora(string mensagem) {
+    BitArray *quadro = new BitArray(mensagem);
 
-void Simulacao::camadaFisicaTransmissora() {}
+    this->camadaFisicaTransmissora(quadro);
+}
+
+void Simulacao::camadaFisicaTransmissora(BitArray* quadro) {
+    BitArray *fluxoBrutoDeBits = transmissora->execute(quadro);
+
+    this->meioDeComunicacao(fluxoBrutoDeBits);
+}
 
 /*****************************************************/
+
+void Simulacao::meioDeComunicacao(BitArray* fluxoBrutoDeBits) {
+    // simular os bits passando de um lugar pro outro
+
+    BitArray *fluxoBrutoDeBitsPontoB = fluxoBrutoDeBits;
+
+    this->camadaFisicaReceptora(fluxoBrutoDeBitsPontoB);
+}
 
 /********************** Recepção *********************/
 
-void Simulacao::camadaDeAplicacaoReceptora() {}
+void Simulacao::camadaFisicaReceptora(BitArray* fluxoBrutoDeBitsPontoB) {
+    BitArray *fluxoBrutoDeBits = receptora->execute(fluxoBrutoDeBitsPontoB);
 
-void Simulacao::camadaFisicaReceptora() {}
+    this->camadaDeAplicacaoReceptora(fluxoBrutoDeBits);
+}
 
-/*****************************************************/
+void Simulacao::camadaDeAplicacaoReceptora(BitArray* fluxoBrutoDeBits) {
+    string mensagem = fluxoBrutoDeBits.toString();
 
-void Simulacao::meioDeComunicacao() {}
+    cout << "A mensagem recebida foi: " << mensagem << endl;
+}
+
+
 
 

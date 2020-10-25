@@ -2,6 +2,7 @@
 #define CFT_HPP
 
 #include <iostream>
+#include <stdlib.h>
 #include "Utils.hpp"
 #include "BitArray.hpp"
 

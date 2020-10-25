@@ -10,7 +10,7 @@ public:
 
 class CFTBinaria : public CamadaFisicaTransmissora {
 public:
-    BitArray* execute(BitArray * mensagem) override;
+    BitArray* execute(BitArray *) override;
 };
 
 class CFTManchester : public CamadaFisicaTransmissora {

@@ -15,8 +15,32 @@ BitArray::BitArray(const string &mensagem) {
     }
 }
 
+BitArray::BitArray(const u_int8_t *bitStream, int tam) {
+    int numBytes = tam / BYTE_SIZE;
+
+    // Aloca o espaço de memória para o container com todos valores 0
+    this->container = (uint8_t *) calloc(numBytes, sizeof(uint8_t));
+    this->lenght = numBytes; // Armazena o tamanho da mensagem
+
+    u_int8_t byte;
+    for (unsigned int i = 0; i < tam / BYTE_SIZE; i++) {
+        byte = 0b0;
+
+        for (unsigned int j = 0; j < BYTE_SIZE; j++) {
+            byte <<= 1;
+            byte &= bitStream[i*8 + j];
+        }
+
+        this->container[i] = byte;
+    }
+}
+
 BitArray::~BitArray() {
     free(container); // Libera o espaço de memória do container
+}
+
+unsigned int BitArray::tam() {
+    return this->lenght;
 }
 
 void BitArray::setBit(unsigned int k) {

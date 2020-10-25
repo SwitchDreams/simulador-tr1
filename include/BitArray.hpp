@@ -57,6 +57,20 @@ public:
     int operator[](unsigned int);
 
     /**
+     * @brief Overload do operator = , para realizar a atribuição entre dois BitArrays
+     * @param ba: endereço do BitArray que fornecerá os dados
+     * @return void
+     */
+    void operator = (const BitArray&);
+
+    /**
+     * @brief Converte um array de bits para std::string
+     * 
+     * @return std::string 
+     */
+    std::string toString();
+
+    /**
     * @brief Printa no terminal o array de bits
     */
     void print();

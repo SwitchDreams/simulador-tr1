@@ -10,12 +10,24 @@ BitArray *CFRBinaria::execute(BitArray *quadro) {
 
 BitArray *CFRManchester::execute(BitArray *quadro) {
     int streamSize = quadro->tam()/2;
-    u_int8_t *decodedManchesterStream = (u_int8_t *) calloc(streamSize, sizeof(u_int8_t));
     
-    for (unsigned int i = 0; i < )
+    BitArray* decodedArray = new BitArray(streamSize);
 
+    for (unsigned int i = 0; i < streamSize; i++) {
+        if((*quadro)[i*2] == 0 && (*quadro)[i*2 + 1] == 1) {
+            decodedArray->clearBit(i);
+        } else if ((*quadro)[i*2] == 1 && (*quadro)[i*2 + 1] == 0) {
+            decodedArray->setBit(i);
+        } else {
+            std::cout << "Erro!" << std::endl;
+        }
+    }
 
-    return nullptr;
+    std::cout << "Decodificação Manchester:";
+    decodedArray->print();
+    std::cout << std::endl;
+
+    return decodedArray;
 }
 
 BitArray *CFRManchesterDiferencial::execute(BitArray *) {

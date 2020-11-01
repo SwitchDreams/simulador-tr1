@@ -9,21 +9,28 @@ BitArray *CFTBinaria::execute(BitArray *quadro) {
 
 BitArray *CFTManchester::execute(BitArray *quadro) {
     int streamSize = 2*quadro->tam()*BYTE_SIZE;
-    u_int8_t *manchesterStream = (u_int8_t *) calloc(streamSize, sizeof(u_int8_t));
+    
+    BitArray* bitArray = new BitArray(streamSize);
 
-    for (unsigned int i = 0; i < quadro->tam() * BYTE_SIZE; i++) {
-        u_int8_t bit = (*quadro)[i];
-        if (bit) {
+    for (unsigned int i = 0; i < streamSize/2 ; i++) {
+        if ((*quadro)[i]) {
+            //bitArray->setBit(i); // Copia informação do quadro 
             // Se o bit == 1, borda de caída 1->0
-            manchesterStream[i*2]     = 1;
-            manchesterStream[i*2 + 1] = 0;
+            bitArray->setBit(i*2);
+            bitArray->clearBit(i*2 + 1);
         } else {
+            //bitArray->clearBit(i); // Copia informação do quadro 
             // Se o bit == 0, borda de subida 0->1
-            manchesterStream[i*2]     = 0;
-            manchesterStream[i*2 + 1] = 1;
+            bitArray->clearBit(i*2);
+            bitArray->clearBit(i*2 + 1);
         }
     }
-    return new BitArray(manchesterStream, streamSize);
+
+    std::cout << "Codificação Manchester:";
+    bitArray->print();
+    std::cout << std::endl;
+
+    return bitArray;
 }
 
 BitArray *CFTManchesterDiferencial::execute(BitArray *quadro) {

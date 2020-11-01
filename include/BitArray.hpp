@@ -39,7 +39,7 @@ public:
      * @param tam: Tamanho do vetor
      * @return BitArray
      */
-    BitArray(const u_int8_t*, int);
+    BitArray(int);
 
     /**
     * @brief Destructor: Libera o espaço de memória do ponteiro do container

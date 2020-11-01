@@ -5,9 +5,9 @@ ____
 <p>
 Trabalho da disciplina Teleinformática e Redes I (204315) ministrada pelo Prof. Doutor Geraldo Pereira que consiste em simular o funcionamento da camada física por meio da implementação dos seguintes protocolos: 
 
-(i) Binário; 
-(ii) Manchester; 
-(iii) Manchester Diferencial. 
+- (i) Binário; 
+- (ii) Manchester; 
+- (iii) Manchester Diferencial. 
 </p>
 
 Desenvolvedores:

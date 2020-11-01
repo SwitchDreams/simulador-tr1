@@ -30,3 +30,4 @@ int main() {
 }
 
 // TODO fazer separadamente a Aplicação Transmissora/Receptora ou deixar como está
+// TODO dar free em todos os callocs

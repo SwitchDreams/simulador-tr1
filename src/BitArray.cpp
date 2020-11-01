@@ -5,7 +5,7 @@ using namespace std;
 
 BitArray::BitArray(const string &mensagem) {
     // Aloca o espaço de memória para o container com todos valores 0
-    this->container = (uint8_t *) calloc(mensagem.length(), sizeof(uint8_t));
+    this->container = (u_int8_t *) calloc(mensagem.length(), sizeof(u_int8_t));
     this->lenght = mensagem.length(); // Armazena o tamanho da mensagem
     int cont = 0;
     // Para cada letra da mensagem
@@ -19,7 +19,7 @@ BitArray::BitArray(const u_int8_t *bitStream, int tam) {
     int numBytes = tam / BYTE_SIZE;
 
     // Aloca o espaço de memória para o container com todos valores 0
-    this->container = (uint8_t *) calloc(numBytes, sizeof(uint8_t));
+    this->container = (u_int8_t *) calloc(numBytes, sizeof(u_int8_t));
     this->lenght = numBytes; // Armazena o tamanho da mensagem
 
     u_int8_t byte;

@@ -8,7 +8,13 @@ BitArray *CFRBinaria::execute(BitArray *quadro) {
     return quadro;
 }
 
-BitArray *CFRManchester::execute(BitArray *) {
+BitArray *CFRManchester::execute(BitArray *quadro) {
+    int streamSize = quadro->tam()/2;
+    u_int8_t *decodedManchesterStream = (u_int8_t *) calloc(streamSize, sizeof(u_int8_t));
+    
+    for (unsigned int i = 0; i < )
+
+
     return nullptr;
 }
 

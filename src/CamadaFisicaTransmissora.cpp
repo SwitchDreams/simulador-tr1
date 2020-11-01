@@ -9,7 +9,7 @@ BitArray *CFTBinaria::execute(BitArray *quadro) {
 
 BitArray *CFTManchester::execute(BitArray *quadro) {
     int streamSize = 2*quadro->tam()*BYTE_SIZE;
-    u_int8_t *manchesterStream = (uint8_t *) calloc(streamSize, sizeof(uint8_t));
+    u_int8_t *manchesterStream = (u_int8_t *) calloc(streamSize, sizeof(u_int8_t));
 
     for (unsigned int i = 0; i < quadro->tam() * BYTE_SIZE; i++) {
         u_int8_t bit = (*quadro)[i];

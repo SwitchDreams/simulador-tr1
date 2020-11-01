@@ -22,7 +22,7 @@ BitArray *CFTManchester::execute(BitArray *quadro) {
             //bitArray->clearBit(i); // Copia informação do quadro 
             // Se o bit == 0, borda de subida 0->1
             bitArray->clearBit(i*2);
-            bitArray->clearBit(i*2 + 1);
+            bitArray->setBit(i*2 + 1);
         }
     }
 

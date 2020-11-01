@@ -9,7 +9,7 @@ BitArray *CFRBinaria::execute(BitArray *quadro) {
 }
 
 BitArray *CFRManchester::execute(BitArray *quadro) {
-    int streamSize = quadro->tam()/2;
+    int streamSize = BYTE_SIZE*quadro->tam()/2;
     
     BitArray* decodedArray = new BitArray(streamSize);
 

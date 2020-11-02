@@ -1,16 +1,37 @@
-<h2 align="center">Simulador de Camada Física</h2>
-<h4 align="center">Universidade de Brasília</h4>
+# Simulador Camada Física - Universidade de Brasília
 
-____
-<p>
 Trabalho da disciplina Teleinformática e Redes I (204315) ministrada pelo Prof. Doutor Geraldo Pereira que consiste em simular o funcionamento da camada física por meio da implementação dos seguintes protocolos: 
 
-- (i) Binário; 
-- (ii) Manchester; 
-- (iii) Manchester Diferencial. 
-</p>
+- Binário; 
+- Manchester; 
+- Manchester Diferencial. 
 
-Desenvolvedores:
+## Compilação e Execução
+
+Para compilar o programa, basta ir ao diretório raiz e digitar:
+
+```
+$ make
+```
+
+Para executar o programa, digite no mesmo diretório da compilação:
+
+```
+$ make run
+```
+
+ou 
+
+```
+$ ./simulador
+```
+
+
+---
+
+
+## Desenvolvedores
+
 | Nome                           | Matrícula  | 
 |--------------------------------|------------| 
 | João Pedro Assis dos Santos    | 17/0146367 |

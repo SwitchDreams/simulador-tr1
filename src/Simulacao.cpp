@@ -21,7 +21,10 @@ Simulacao::Simulacao(int tipo_codificacao) {
     }
 }
 
-Simulacao::~Simulacao() {}
+Simulacao::~Simulacao() {
+    delete transmissora;
+    delete receptora;
+}
 
 /******************** Transmissão ********************/
 

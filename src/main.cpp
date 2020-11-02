@@ -26,5 +26,6 @@ int main() {
 
     simulacao->camadaDeAplicacaoTransmissora(mensagem);
 
+    delete simulacao;
     return 0;
 }

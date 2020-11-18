@@ -3,17 +3,22 @@
 
 #include "../include/CamadaFisicaTransmissora.hpp"
 #include "../include/CamadaFisicaReceptora.hpp"
+#include "../include/CamadaEnlaceTransmissora.hpp"
+#include "../include/CamadaEnlaceReceptora.hpp"
 #include "../include/BitArray.hpp"
 #include <string>
 #include <iostream>
 
 class Simulacao {
 private:
-    CamadaFisicaTransmissora* transmissora;
-    CamadaFisicaReceptora* receptora;
+    CamadaFisicaTransmissora* fisicaTransmissora;
+    CamadaFisicaReceptora* fisicaReceptora;
+
+    CamadaEnlaceTransmissora* enlaceTransmissora;
+    CamadaEnlaceReceptora* enlaceReceptora;
 
 public:
-    Simulacao(int);
+    Simulacao(int, int);
     ~Simulacao();
 
     /**** Transmissão ****/

@@ -11,7 +11,7 @@ using namespace std;
 int main() {
 
     string mensagem;
-    int tipo_codigo, tipo_enquadramento;
+    int tipoCodigo, tipoEnquadramento;
 
     // Recebe a mensagem do usuário
     std::system("clear");
@@ -19,11 +19,11 @@ int main() {
     getline(cin, mensagem);
 
     // Recebe a codificação a ser utilizada
-    tipo_codigo = getMenuCodigo();
-    tipo_enquadramento = getMenuEnquadramento();
+    tipoCodigo = getMenuCodigo();
+    tipoEnquadramento = getMenuEnquadramento();
 
     // Instancia uma nova simulação
-    Simulacao *simulacao = new Simulacao(tipo_codigo);
+    Simulacao *simulacao = new Simulacao(tipoCodigo, tipoEnquadramento);
 
     simulacao->camadaDeAplicacaoTransmissora(mensagem);
 

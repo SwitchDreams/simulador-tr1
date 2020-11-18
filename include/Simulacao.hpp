@@ -31,6 +31,10 @@ public:
     /**** Recepção ****/
     void camadaDeAplicacaoReceptora(BitArray*);
     void camadaFisicaReceptora(BitArray*);
+
+    /**** Enlace ****/
+    BitArray* camadaEnlaceTransmissoraEnquadramento(BitArray*);
+    BitArray* camadaEnlaceReceptoraEnquadramento(BitArray*);
 };
 
 #endif // SIMULACAO_HPP

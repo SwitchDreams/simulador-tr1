@@ -51,7 +51,8 @@ Simulacao::~Simulacao() {
 void Simulacao::camadaDeAplicacaoTransmissora(string mensagem) {
     BitArray *quadro = new BitArray(mensagem);
 
-    this->camadaFisicaTransmissora(quadro);
+    BitArray *retornoEnquadramento = this->camadaEnlaceTransmissoraEnquadramento(quadro);
+    this->camadaFisicaTransmissora(retornoEnquadramento);
 }
 
 void Simulacao::camadaFisicaTransmissora(BitArray* quadro) {
@@ -75,7 +76,8 @@ void Simulacao::meioDeComunicacao(BitArray* fluxoBrutoDeBits) {
 void Simulacao::camadaFisicaReceptora(BitArray* fluxoBrutoDeBitsPontoB) {
     BitArray *fluxoBrutoDeBits = fisicaReceptora->execute(fluxoBrutoDeBitsPontoB);
 
-    this->camadaDeAplicacaoReceptora(fluxoBrutoDeBits);
+    BitArray *retornoEnquadramento = this->camadaEnlaceReceptoraEnquadramento(fluxoBrutoDeBits);
+    this->camadaDeAplicacaoReceptora(retornoEnquadramento);
 }
 
 void Simulacao::camadaDeAplicacaoReceptora(BitArray* fluxoBrutoDeBits) {
@@ -84,6 +86,13 @@ void Simulacao::camadaDeAplicacaoReceptora(BitArray* fluxoBrutoDeBits) {
     cout << "A mensagem recebida foi: " << mensagem << endl;
 }
 
+/********************** Enlace *********************/
 
+BitArray* Simulacao::camadaEnlaceTransmissoraEnquadramento(BitArray* quadro) {
+    return enlaceTransmissora->execute(quadro);
+}
 
+BitArray* Simulacao::camadaEnlaceReceptoraEnquadramento(BitArray* quadro) {
+    return enlaceReceptora->execute(quadro);
+}
 

@@ -18,8 +18,8 @@ private:
      * de um container e respectivamente a LSB é a posição 1
      */
     u_int8_t *container;
-    unsigned int lenght; //!< Tamanho do BitArray em bytes
 public:
+    unsigned int lenght; //!< Tamanho do BitArray em bytes
     /**
      * @brief Inicializa o BitArray
      * Esse construtor recebe de parâmetro uma string e inicializa o ponteiro do container, convertendo cada char em
@@ -32,10 +32,7 @@ public:
 
     /**
      * @brief Inicializa o BitArray
-     * Esse construtor recebe de parâmetro um vetor de u_int8_t binários e inicializa o ponteiro do container,
-     * convertendo cada 8 elementos em um byte e inserindo no array de u_int8_t. Também atribui o valor de lenght
-     * a partir de uma contagem de bytes.
-     * @param bitStream: Vetor de inteiros u_int8_t binários
+     * Esse construtor recebe de parâmetro um tamanho do BitArray e preenche com zeros
      * @param tam: Tamanho do vetor
      * @return BitArray
      */

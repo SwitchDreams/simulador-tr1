@@ -44,6 +44,13 @@ public:
     ~BitArray();
 
     /**
+    *  @brief Coleta o primeiro o primeiro byte do array
+    *
+    * @return unsigned int com o valor do byte
+    */
+    unsigned int getCabecalho();
+
+    /**
      * @brief Retorna o tamanho do container
      * 
      * @return unsigned int com o tamanho do container
@@ -76,7 +83,7 @@ public:
      * @param ba: endereço do BitArray que fornecerá os dados
      * @return void
      */
-    void operator = (const BitArray&);
+    void operator=(const BitArray &);
 
     /**
      * @brief Converte um array de bits para std::string

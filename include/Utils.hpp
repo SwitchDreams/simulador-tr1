@@ -3,6 +3,7 @@
 
 #include <string>
 
-int printMenu();
+int getMenuCodigo();
+int getMenuEnquadramento();
 
 #endif // UTILS_HPP

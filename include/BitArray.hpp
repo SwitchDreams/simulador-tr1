@@ -18,8 +18,8 @@ private:
      * de um container e respectivamente a LSB é a posição 1
      */
     u_int8_t *container;
-public:
     unsigned int lenght; //!< Tamanho do BitArray em bytes
+public:
     /**
      * @brief Inicializa o BitArray
      * Esse construtor recebe de parâmetro uma string e inicializa o ponteiro do container, convertendo cada char em

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/CamadaEnlaceTransmissora.hpp"
+#include "../include/Utils.hpp"
 
 BitArray *CETContagemCaracteres::execute(BitArray *quadro) {
     std::cout << "Contagem de Caracteres: ";
@@ -61,5 +62,47 @@ BitArray *CETInsercaoBytes::execute(BitArray *quadro) {
 };
 
 BitArray *CETInsercaoBits::execute(BitArray *quadro) {
-    return quadro;
+
+    std::vector<uint8_t> quadroDeBitsComFlags;
+
+    
+    int numBits = 0;
+
+    for (unsigned int i = 0; i < quadro->tam(); i++) {
+
+        insereBytesComoBits(BIT_FLAG, &quadroDeBitsComFlags);
+        for (unsigned int j = 0; j < TAM_QUADRO; j++) {
+            uint8_t bit = (*quadro)[i*TAM_QUADRO + j];
+
+            if (bit) {
+                numBits++;
+
+                quadroDeBitsComFlags.push_back(bit);
+                if (numBits == 5) {
+                    quadroDeBitsComFlags.push_back(0);
+                    numBits = 0;
+                }
+            } else {
+                numBits = 0;
+                quadroDeBitsComFlags.push_back(bit);
+            }
+        }
+        insereBytesComoBits(BIT_FLAG, &quadroDeBitsComFlags);
+    }
+
+    // Criando bitArray com mais um byte para alocar espaços para os zeros inseridos
+    BitArray* quadroDeBits = new BitArray(quadroDeBitsComFlags.size() + 1);
+
+    // Preenche o bitArray
+    for (unsigned int i = 0; i < quadroDeBitsComFlags.size() * BYTE_SIZE; i++) {
+        uint8_t bit = quadroDeBitsComFlags[i];
+        bit ? quadroDeBits->setBit(i) : quadroDeBits->clearBit(i);
+    }
+
+    std::cout << "A flag é: " << "01111110" << std::endl;
+    std::cout << std::endl << "Inserção de Byte: ";
+    quadroDeBits->print();
+    std::cout << std::endl;
+
+    return quadroDeBits;
 };

@@ -6,9 +6,12 @@
 
 #define BYTE_SIZE 8 //!< Tamanho de um byte em bits
 #define BYTE_FLAG (uint8_t) 0b1000000
+#define BIT_FLAG (uint8_t) 0b01111110
 #define BYTE_ESC (uint8_t) 0b00100011
 #define BIT_8 (uint8_t) 0b10000000
 #define BIT_1 (uint8_t) 0x01
+#define TAM_QUADRO BYTE_SIZE
+
 
 /*
  *  Classe BitArray

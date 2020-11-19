@@ -38,7 +38,7 @@ BitArray *CETInsercaoBytes::execute(BitArray *quadro) {
 
     BitArray* quadroCompleto = new BitArray(quadroComFlags.size() * BYTE_SIZE);
 
-    for(unsigned int i = 0; i<quadroComFlags.size(); i++) {
+    for(unsigned int i = 0; i < quadroComFlags.size(); i++) {
         for(unsigned int j=0; j < BYTE_SIZE; j++) {
             uint8_t bit = quadroComFlags[i] >> j & BIT_1;
             if(bit) {
@@ -51,7 +51,7 @@ BitArray *CETInsercaoBytes::execute(BitArray *quadro) {
 
     std::cout << "A flag é: " << "01000000 (@)" << std::endl;
     std::cout << "O ESC é: " << "00100011 (#)" << std::endl;
-    std::cout << "Inserção de Byte: ";
+    std::cout << std::endl << "Inserção de Byte: ";
     quadroCompleto->print();
     std::cout << std::endl;
 

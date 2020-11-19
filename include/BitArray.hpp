@@ -32,10 +32,7 @@ public:
 
     /**
      * @brief Inicializa o BitArray
-     * Esse construtor recebe de parâmetro um vetor de u_int8_t binários e inicializa o ponteiro do container,
-     * convertendo cada 8 elementos em um byte e inserindo no array de u_int8_t. Também atribui o valor de lenght
-     * a partir de uma contagem de bytes.
-     * @param bitStream: Vetor de inteiros u_int8_t binários
+     * Esse construtor recebe de parâmetro um tamanho do BitArray e preenche com zeros
      * @param tam: Tamanho do vetor
      * @return BitArray
      */
@@ -45,6 +42,13 @@ public:
     * @brief Destructor: Libera o espaço de memória do ponteiro do container
     */
     ~BitArray();
+
+    /**
+    *  @brief Coleta o primeiro o primeiro byte do array
+    *
+    * @return unsigned int com o valor do byte
+    */
+    unsigned int getCabecalho();
 
     /**
      * @brief Retorna o tamanho do container
@@ -79,7 +83,7 @@ public:
      * @param ba: endereço do BitArray que fornecerá os dados
      * @return void
      */
-    void operator = (const BitArray&);
+    void operator=(const BitArray &);
 
     /**
      * @brief Converte um array de bits para std::string

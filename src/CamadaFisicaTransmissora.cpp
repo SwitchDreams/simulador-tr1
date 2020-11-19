@@ -36,7 +36,6 @@ BitArray *CFTManchester::execute(BitArray *quadro) {
 BitArray *CFTManchesterDiferencial::execute(BitArray *quadro) {
     int streamSize = 2*quadro->tam()*BYTE_SIZE;
 
-    std::cout << "TÁ DESSE JEITO AQUI: ";
     quadro->print();
     std::cout << std::endl;
     BitArray* bitArray = new BitArray(streamSize);

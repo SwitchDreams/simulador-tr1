@@ -2,6 +2,7 @@
 #define CET_HPP
 
 #include <iostream>
+#include <vector>
 #include "BitArray.hpp"
 
 class CamadaEnlaceTransmissora {

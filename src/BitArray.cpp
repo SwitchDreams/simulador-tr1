@@ -77,7 +77,7 @@ string BitArray::toString() {
 void BitArray::print() {
     // Para cada bit do array
     for (unsigned int i = 0; i < this->lenght; i++) {
-        for(unsigned int j = 0; j < BYTE_SIZE ; j++) {
+        for(int j = BYTE_SIZE - 1; j >= 0 ; j--) {
             cout << (*this)[i*8 + j]; // Printa o bit no terminal
         }
         cout << " ";

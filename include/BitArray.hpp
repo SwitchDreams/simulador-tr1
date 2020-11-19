@@ -55,6 +55,13 @@ public:
     unsigned int getCabecalho();
 
     /**
+    * @brief Coleta o byte da posição especificada
+    *
+    * @return unsigned int com o valor do byte
+    */
+    unsigned int getByte(uint8_t posicao);
+
+    /**
      * @brief Retorna o tamanho do container
      * 
      * @return unsigned int com o tamanho do container

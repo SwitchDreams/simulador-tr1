@@ -27,6 +27,11 @@ BitArray::~BitArray() {
     free(container); // Libera o espaço de memória do container
 }
 
+unsigned int BitArray::getByte(uint8_t posicao) {
+    return this->toString()[posicao];
+}
+
+
 unsigned int BitArray::getCabecalho(){
     return this->toString()[0];
 }

@@ -27,18 +27,18 @@ BitArray *CERContagemCaracteres::execute(BitArray *quadro) {
 
 BitArray *CERInsercaoBytes::execute(BitArray *quadro) {
     
-    BitArray* quadroDecodificado = new BitArray(quadro->tam() * BYTE_SIZE); // Verificar o tam
     uint8_t byte = 0, previousByte, indice = 0; 
+    int lastEscIsData = 0, anterior = 0;
+    std::string mensagem;
 
     for(unsigned int i = 0; i < quadro->tam(); i++) {
         
         previousByte = byte; // Salvando o byte anterior para verificações
 
-        // Pegando o byte
-        for(unsigned int j = 0; j < BYTE_SIZE ; j++) {
-            byte |= (*quadro)[i*8 + j] << j;
-        }
+        byte = quadro->getByte(i);
         
+        anterior = i-1;
+
         // Verificando se deve-se descartar a informação
         if(byte == BYTE_FLAG and previousByte != BYTE_ESC) {
             // O valor é uma flag, pois o anterior não é o byte de escape
@@ -47,19 +47,18 @@ BitArray *CERInsercaoBytes::execute(BitArray *quadro) {
             // O valor não é do campo de carga útil
             // É um escape, pois o anterior não é o byte de escape
             continue;
+        } else if (byte == BYTE_ESC and previousByte == BYTE_ESC and lastEscIsData != anterior) {
+            // O esc anterior não é de dado
+            lastEscIsData = i; // Atual é de dado
+        } else if ((byte == BYTE_FLAG or byte == BYTE_ESC) and previousByte == BYTE_ESC and lastEscIsData == anterior) {
+            // Esc anterior é de dados, atual é esc normal
+            continue;
         }
-        
-        // Salvando no quadro decodificado
-        for(int k = 0; k < BYTE_SIZE; k++) {
-            uint8_t bit = byte >> k & BIT_1;   
-            if(bit) {
-                quadroDecodificado->setBit(indice*8 + k);
-            } else {
-                quadroDecodificado->clearBit(indice*8 + k);
-            }
-        }
-        indice++;
+
+        mensagem += quadro->getByte(i);
     }
+
+    BitArray* quadroDecodificado = new BitArray(mensagem);
     
     std::cout << "Decodificação da Inserção de Byte: ";
     quadroDecodificado->print();

@@ -51,6 +51,10 @@ Simulacao::~Simulacao() {
 void Simulacao::camadaDeAplicacaoTransmissora(string mensagem) {
     BitArray *quadro = new BitArray(mensagem);
 
+    std::cout << std::endl << "Mensagem original: ";
+    quadro->print();
+    std::cout << std::endl;
+    
     BitArray *retornoEnquadramento = this->camadaEnlaceTransmissoraEnquadramento(quadro);
     this->camadaFisicaTransmissora(retornoEnquadramento);
 }

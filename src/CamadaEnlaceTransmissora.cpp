@@ -49,8 +49,8 @@ BitArray *CETInsercaoBytes::execute(BitArray *quadro) {
         }
     }
 
-    std::cout << "A flag é: " << "01000000" << std::endl;
-    std::cout << "O ESC é: " << "01010101" << std::endl;
+    std::cout << "A flag é: " << "01000000 (@)" << std::endl;
+    std::cout << "O ESC é: " << "00100011 (#)" << std::endl;
     std::cout << "Inserção de Byte: ";
     quadroCompleto->print();
     std::cout << std::endl;

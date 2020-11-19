@@ -53,6 +53,8 @@ BitArray *CETInsercaoBytes::execute(BitArray *quadro) {
     std::cout << "O ESC é: " << "00100011 (#)" << std::endl;
     std::cout << std::endl << "Inserção de Byte: ";
     quadroCompleto->print();
+    std::cout << "Mensagem codificada: ";
+    std::cout << quadroCompleto->toString() << std::endl;
     std::cout << std::endl;
 
     return quadroCompleto;

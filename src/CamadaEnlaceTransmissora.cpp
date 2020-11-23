@@ -20,22 +20,25 @@ BitArray *CETContagemCaracteres::execute(BitArray *quadro) {
 BitArray *CETInsercaoBytes::execute(BitArray *quadro) {
     std::vector<uint8_t> quadroComFlags;
 
-    quadroComFlags.push_back(BYTE_FLAG);
 
     for(unsigned int i = 0; i < quadro->tam(); i++) {
         uint8_t byte = 0; 
         for(unsigned int j = 0; j < BYTE_SIZE ; j++) {
             byte |= (*quadro)[i*8 + j] << j;
         }
+
+        quadroComFlags.push_back(BYTE_FLAG); // Adicionando a Flag antes de cada byte
         if(byte == BYTE_FLAG or byte == BYTE_ESC) {
             // Acrescentar o byte 'ESC' antes do ESC ou Flag no campo de carga útil
             quadroComFlags.push_back(BYTE_ESC);
             quadroComFlags.push_back(byte);
+            quadroComFlags.push_back(BYTE_FLAG); // Adicionando a Flag após cada byte
         } else {
             quadroComFlags.push_back(byte);
+            quadroComFlags.push_back(BYTE_FLAG); // Adicionando a Flag após cada byte
         }
     }
-    quadroComFlags.push_back(BYTE_FLAG);
+
 
     BitArray* quadroCompleto = new BitArray(quadroComFlags.size() * BYTE_SIZE);
 

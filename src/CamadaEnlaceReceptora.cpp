@@ -5,20 +5,17 @@ BitArray *CERContagemCaracteres::execute(BitArray *quadro) {
     std::cout << "Decodificação Contagem de Caracteres: ";
 
     // Tamanho do quadro em BYTES
-    int tamanhoQuadro = (int) quadro->getCabecalho();
+    int tamanhoQuadro = (int) quadro->tam();
+
+    std::string mensagem;
+    // Pega a mensagem pulando o cabeçalho
+    for (int i = 1; i < tamanhoQuadro; i += 2) {
+        // Começa do segundo byte porconta do cabeçalho
+        mensagem += quadro->getByte(i);
+    }
 
     // Cria um novo quadro sem o cabeçalho
-    auto *quadroSemCabecalho = new BitArray(tamanhoQuadro * BYTE_SIZE);
-
-    for (int i = 0; i < tamanhoQuadro * BYTE_SIZE; i++) {
-        // Começa do segundo byte porconta do cabeçalho
-        if ((*quadro)[i + BYTE_SIZE]) {
-            quadroSemCabecalho->setBit(i);
-        } else {
-            quadroSemCabecalho->clearBit(i);
-        }
-
-    }
+    auto *quadroSemCabecalho = new BitArray(mensagem);
 
     quadroSemCabecalho->print();
     std::cout << std::endl;
@@ -26,17 +23,17 @@ BitArray *CERContagemCaracteres::execute(BitArray *quadro) {
 };
 
 BitArray *CERInsercaoBytes::execute(BitArray *quadro) {
-    
-    uint8_t byte = 0, previousByte, indice = 0; 
+
+    uint8_t byte = 0, previousByte, indice = 0;
     int lastEscIsData = 0, anterior = 0;
     std::string mensagem;
 
     for(unsigned int i = 0; i < quadro->tam(); i++) {
-        
+
         previousByte = byte; // Salvando o byte anterior para verificações
 
         byte = quadro->getByte(i);
-        
+
         anterior = i-1;
 
         // Verificando se deve-se descartar a informação
@@ -59,7 +56,7 @@ BitArray *CERInsercaoBytes::execute(BitArray *quadro) {
     }
 
     BitArray* quadroDecodificado = new BitArray(mensagem);
-    
+
     std::cout << "Decodificação da Inserção de Byte: ";
     quadroDecodificado->print();
     std::cout << std::endl;

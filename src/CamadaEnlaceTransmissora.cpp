@@ -9,7 +9,13 @@ BitArray *CETContagemCaracteres::execute(BitArray *quadro) {
     unsigned int tamanhoQuadro = quadro->tam();
 
     // Adicionando o cabeçalho na mensagem
-    auto* quadroComCabecalho = new BitArray((char) tamanhoQuadro + quadro->toString());
+    std::string mensagem;
+    for (unsigned int i=0; i < tamanhoQuadro; i++) {
+        mensagem += '1';
+        mensagem += quadro->getByte(i);
+    }
+
+    auto* quadroComCabecalho = new BitArray(mensagem);
 
     quadroComCabecalho->print();
     std::cout << std::endl;
@@ -22,7 +28,7 @@ BitArray *CETInsercaoBytes::execute(BitArray *quadro) {
 
 
     for(unsigned int i = 0; i < quadro->tam(); i++) {
-        uint8_t byte = 0; 
+        uint8_t byte = 0;
         for(unsigned int j = 0; j < BYTE_SIZE ; j++) {
             byte |= (*quadro)[i*8 + j] << j;
         }
@@ -68,7 +74,7 @@ BitArray *CETInsercaoBits::execute(BitArray *quadro) {
 
     std::vector<uint8_t> quadroDeBitsComFlags;
 
-    
+
     int numBits = 0;
 
     for (unsigned int i = 0; i < quadro->tam(); i++) {

@@ -24,7 +24,7 @@ BitArray::BitArray(int tam) {
 }
 
 BitArray::~BitArray() {
-    free(container); // Libera o espaço de memória do container
+    free(this->container); // Libera o espaço de memória do container
 }
 
 unsigned int BitArray::getByte(uint8_t posicao) {

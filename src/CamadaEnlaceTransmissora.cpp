@@ -108,9 +108,13 @@ BitArray *CETInsercaoBits::execute(BitArray *quadro) {
     }
 
     // Preenche o bitArray
-    for (unsigned int i = 0; i < quadroDeBitsComFlags.size() * BYTE_SIZE; i++) {
+    for (unsigned int i = 0; i < quadroDeBitsComFlags.size(); i++) {
         uint8_t bit = quadroDeBitsComFlags[i];
-        bit ? quadroDeBits->setBit(i) : quadroDeBits->clearBit(i);
+        if (bit) {
+            quadroDeBits->setBit(i);
+        } else {
+            quadroDeBits->clearBit(i);
+        }
     }
 
     std::cout << "A flag é: " << "01111110" << std::endl;

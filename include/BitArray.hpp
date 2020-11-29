@@ -5,6 +5,13 @@
 #include <string>
 
 #define BYTE_SIZE 8 //!< Tamanho de um byte em bits
+#define BYTE_FLAG (uint8_t) 0b1000000
+#define BIT_FLAG (uint8_t) 0b01111110
+#define BYTE_ESC (uint8_t) 0b00100011
+#define BIT_8 (uint8_t) 0b10000000
+#define BIT_1 (uint8_t) 0x01
+#define TAM_QUADRO BYTE_SIZE
+
 
 /*
  *  Classe BitArray
@@ -17,13 +24,13 @@ private:
      * seguintes abstrai o container para ser operado a nível de bits. Sendo que o MSB é a posição 0 dentro de um termo
      * de um container e respectivamente a LSB é a posição 1
      */
-    u_int8_t *container;
+    uint8_t *container;
     unsigned int lenght; //!< Tamanho do BitArray em bytes
 public:
     /**
      * @brief Inicializa o BitArray
      * Esse construtor recebe de parâmetro uma string e inicializa o ponteiro do container, convertendo cada char em
-     * formato ascii e colocando em cada posição do array de u_int8_t. Também atribui o valor de lenght como a
+     * formato ascii e colocando em cada posição do array de uint8_t. Também atribui o valor de lenght como a
      * quantidade de chars da string passada de parametro.
      * @param mensagem: String da mensagem que será armazenada em bits
      * @return BitArray
@@ -49,6 +56,13 @@ public:
     * @return unsigned int com o valor do byte
     */
     unsigned int getCabecalho();
+
+    /**
+    * @brief Coleta o byte da posição especificada
+    *
+    * @return unsigned int com o valor do byte
+    */
+    unsigned int getByte(uint8_t posicao);
 
     /**
      * @brief Retorna o tamanho do container

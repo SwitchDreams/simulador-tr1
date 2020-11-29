@@ -6,7 +6,7 @@ RUN = ./
 
 DEP_FLAGS = -MT $@ -MMD -MP -MF $(DEP_PATH)/$*.d
 
-DIRECTIVES = -std=c++11 -c -I $(HEADER_PATH) -g
+DIRECTIVES = -std=c++14 -c -I $(HEADER_PATH) -g
 
 LIBS = -lm
 

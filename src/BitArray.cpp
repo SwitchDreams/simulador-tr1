@@ -5,7 +5,7 @@ using namespace std;
 
 BitArray::BitArray(const string &mensagem) {
     // Aloca o espaço de memória para o container com todos valores 0
-    this->container = (u_int8_t *) calloc(mensagem.length(), sizeof(u_int8_t));
+    this->container = (uint8_t *) calloc(mensagem.length(), sizeof(uint8_t));
     this->lenght = mensagem.length(); // Armazena o tamanho da mensagem
     int cont = 0;
     // Para cada letra da mensagem
@@ -19,16 +19,21 @@ BitArray::BitArray(int tam) {
     int numBytes = tam / BYTE_SIZE;
 
     // Aloca o espaço de memória para o container com todos valores 0
-    this->container = (u_int8_t *) calloc(numBytes, sizeof(u_int8_t));
+    this->container = (uint8_t *) calloc(numBytes, sizeof(uint8_t));
     this->lenght = numBytes; // Armazena o tamanho da mensagem
 }
 
 BitArray::~BitArray() {
-    free(container); // Libera o espaço de memória do container
+    free(this->container); // Libera o espaço de memória do container
 }
 
+unsigned int BitArray::getByte(uint8_t posicao) {
+    return this->container[posicao];
+}
+
+
 unsigned int BitArray::getCabecalho(){
-    return this->toString()[0];
+    return this->container[0];
 }
 
 unsigned int BitArray::tam() {
@@ -76,8 +81,11 @@ string BitArray::toString() {
 
 void BitArray::print() {
     // Para cada bit do array
-    for (unsigned int i = 0; i < this->lenght * BYTE_SIZE; i++) {
-        cout << (*this)[i]; // Printa o bit no terminal
+    for (unsigned int i = 0; i < this->lenght; i++) {
+        for(int j = BYTE_SIZE - 1; j >= 0 ; j--) {
+            cout << (*this)[i*8 + j]; // Printa o bit no terminal
+        }
+        cout << " ";
     }
     cout << endl;
 }

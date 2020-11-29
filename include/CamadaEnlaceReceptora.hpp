@@ -2,6 +2,7 @@
 #define CER_HPP
 
 #include <iostream>
+#include <string>
 #include "BitArray.hpp"
 
 class CamadaEnlaceReceptora {

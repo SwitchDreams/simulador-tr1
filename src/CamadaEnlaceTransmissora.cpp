@@ -11,7 +11,7 @@ BitArray *CETContagemCaracteres::execute(BitArray *quadro) {
     // Adicionando o cabeçalho na mensagem
     std::string mensagem;
     for (unsigned int i=0; i < tamanhoQuadro; i++) {
-        mensagem += '1';
+        mensagem += 1; // Adicionando Cabeçalho de tamanho 1 byte
         mensagem += quadro->getByte(i);
     }
 

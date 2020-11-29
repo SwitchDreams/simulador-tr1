@@ -94,7 +94,12 @@ BitArray *CETInsercaoBits::execute(BitArray *quadro) {
     }
 
     // Criando bitArray com mais um byte para alocar espaços para os zeros inseridos
-    BitArray* quadroDeBits = new BitArray(quadroDeBitsComFlags.size() + 1);
+    BitArray* quadroDeBits;
+    if (quadroDeBitsComFlags.size() % 8 == 0) {
+        quadroDeBits = new BitArray((int) quadroDeBitsComFlags.size());
+    } else {
+        quadroDeBits = new BitArray((int) (quadroDeBitsComFlags.size() + BYTE_SIZE));
+    }
 
     // Preenche o bitArray
     for (unsigned int i = 0; i < quadroDeBitsComFlags.size() * BYTE_SIZE; i++) {
@@ -103,7 +108,7 @@ BitArray *CETInsercaoBits::execute(BitArray *quadro) {
     }
 
     std::cout << "A flag é: " << "01111110" << std::endl;
-    std::cout << std::endl << "Inserção de Byte: ";
+    std::cout << std::endl << "Inserção de Bits: ";
     quadroDeBits->print();
     std::cout << std::endl;
 

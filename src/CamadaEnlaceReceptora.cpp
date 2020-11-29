@@ -68,5 +68,21 @@ BitArray *CERInsercaoBytes::execute(BitArray *quadro) {
 };
 
 BitArray *CERInsercaoBits::execute(BitArray *quadro) {
+
+    // Se o quadro for múltiplo de 3, não houve inserção de bits
+    if (quadro->tam() % 3 == 0) {
+        std::string mensagem = "";
+        for (unsigned int i = 0; i < quadro->tam(); i ++) {
+            uint8_t byte = quadro->getByte(i);
+
+            if (byte != BIT_FLAG) {
+                mensagem.push_back(byte);
+            }
+        }
+
+        auto bitArray = new BitArray(mensagem);
+        return bitArray;
+    }
+
     return quadro;
 };

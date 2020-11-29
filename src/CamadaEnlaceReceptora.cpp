@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/CamadaEnlaceReceptora.hpp"
+#include "../include/Utils.hpp"
 
 BitArray *CERContagemCaracteres::execute(BitArray *quadro) {
     std::cout << "Decodificação Contagem de Caracteres: ";
@@ -75,13 +76,67 @@ BitArray *CERInsercaoBits::execute(BitArray *quadro) {
         for (unsigned int i = 0; i < quadro->tam(); i ++) {
             uint8_t byte = quadro->getByte(i);
 
+            // Se o byte não for a flag, insere na mensagem final
             if (byte != BIT_FLAG) {
                 mensagem.push_back(byte);
             }
         }
 
-        auto bitArray = new BitArray(mensagem);
+        BitArray* bitArray = new BitArray(mensagem);
         return bitArray;
+    } else {
+        std::vector<uint8_t> bitsDaMensagem, bitsSemFlag;
+        // Insere bitArray em um vector para facilitar a manipulação
+        for(unsigned int i = 0; i < quadro->tam() * BYTE_SIZE; i++) {
+            bitsDaMensagem.push_back((*quadro)[i]);
+        }
+
+        int numBits = 0;
+        bool fiveBits = false;
+        uint8_t byte = 0;
+        std::vector<uint8_t> aux;
+        for (unsigned int i = 0; i < bitsDaMensagem.size(); i++) {
+            uint8_t bit = bitsDaMensagem[i];
+            //conta os bits
+            bit ? numBits++ : numBits = 0;
+            aux.push_back(bit);
+
+            // Se temos 5 bits 1 seguidos, seta a flag como true
+            if (numBits == 5) {
+                fiveBits = true;
+                continue;
+            }
+
+            // Se tivermos 5 bits 1
+            if (fiveBits) {
+                fiveBits = false;
+                if (numBits == 6) {
+                    // Se tivermos 6 bits 1, é FLAG
+                    // Retiramos os ultimos 7 elementos, pulamos o próximo (i++)
+                    // e saímos do loop (continue)
+                    aux.resize(aux.size() - 7);
+                    i++;
+                    continue;
+                } else {
+                    aux.pop_back();
+                    numBits = 0;
+                }
+            }
+        }
+
+        aux.resize(aux.size() - 7);
+
+        // Converte em bitArray
+        std::string mensagem = "";
+        for (unsigned int i = 0; i < aux.size(); i += BYTE_SIZE) {
+            uint8_t byte = 0;
+            for (unsigned int j = 0; j < BYTE_SIZE; j++) {
+                byte |= aux[i + j] << j;
+            }
+            mensagem.push_back(byte);
+        }
+
+        return new BitArray(mensagem);
     }
 
     return quadro;

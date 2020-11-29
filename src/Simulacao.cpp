@@ -42,8 +42,8 @@ Simulacao::Simulacao(int tipoCodificacao, int tipoEnlace) {
 }
 
 Simulacao::~Simulacao() {
-    delete fisicaTransmissora;
-    delete fisicaReceptora;
+    // delete fisicaTransmissora;
+    // delete fisicaReceptora;
 }
 
 /******************** Transmissão ********************/
@@ -56,12 +56,14 @@ void Simulacao::camadaDeAplicacaoTransmissora(string mensagem) {
     std::cout << std::endl;
     
     BitArray *retornoEnquadramento = this->camadaEnlaceTransmissoraEnquadramento(quadro);
+    // delete quadro;
     this->camadaFisicaTransmissora(retornoEnquadramento);
 }
 
 void Simulacao::camadaFisicaTransmissora(BitArray* quadro) {
     BitArray *fluxoBrutoDeBits = fisicaTransmissora->execute(quadro);
 
+    // delete quadro;
     this->meioDeComunicacao(fluxoBrutoDeBits);
 }
 
@@ -72,6 +74,7 @@ void Simulacao::meioDeComunicacao(BitArray* fluxoBrutoDeBits) {
 
     BitArray *fluxoBrutoDeBitsPontoB = fluxoBrutoDeBits;
 
+    // delete fluxoBrutoDeBits;
     this->camadaFisicaReceptora(fluxoBrutoDeBitsPontoB);
 }
 
@@ -80,13 +83,17 @@ void Simulacao::meioDeComunicacao(BitArray* fluxoBrutoDeBits) {
 void Simulacao::camadaFisicaReceptora(BitArray* fluxoBrutoDeBitsPontoB) {
     BitArray *fluxoBrutoDeBits = fisicaReceptora->execute(fluxoBrutoDeBitsPontoB);
 
+    // delete fluxoBrutoDeBitsPontoB;
     BitArray *retornoEnquadramento = this->camadaEnlaceReceptoraEnquadramento(fluxoBrutoDeBits);
+
+    // delete fluxoBrutoDeBits;
     this->camadaDeAplicacaoReceptora(retornoEnquadramento);
 }
 
 void Simulacao::camadaDeAplicacaoReceptora(BitArray* fluxoBrutoDeBits) {
     string mensagem = fluxoBrutoDeBits->toString();
 
+    // delete fluxoBrutoDeBits;
     cout << "A mensagem recebida foi: " << mensagem << endl;
 }
 

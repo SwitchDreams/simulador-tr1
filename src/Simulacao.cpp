@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Simulacao::Simulacao(int tipoCodificacao, int tipoEnlace) {
+Simulacao::Simulacao(int tipoCodificacao, int tipoEnlace, int tipoErro, int chanceErro) {
 
     // Inicializa a camada física adequada
     switch(tipoCodificacao) {
@@ -33,10 +33,32 @@ Simulacao::Simulacao(int tipoCodificacao, int tipoEnlace) {
             enlaceReceptora = new CERInsercaoBits();
             break;
         default:
-            cout << "Tipo de codificação inválido (Utilizamos o tipo de codificação binária)" << endl;
+            cout << "Tipo de codificação inválido (Utilizamos o tipo de enquadramento contagem de caracteres)" << endl;
         case 0:
             enlaceTransmissora = new CETContagemCaracteres();
             enlaceReceptora = new CERContagemCaracteres();
+            break;
+    }
+
+    // Inicializa o controle de erro adequado
+    switch (tipoErro) {
+        case 1:
+            erroTransmissora = new CTCEParidadeImpar();
+            erroReceptora = new CRCEParidadeImpar();
+            break;
+        case 2:
+            erroTransmissora = new CTCECRC();
+            erroReceptora = new CRCECRC();
+            break;
+        case 3:
+            erroTransmissora = new CTCEHamming();
+            erroReceptora = new CRCEHamming();
+            break;
+        default:
+            cout << "Tipo de controle de erro inválido (Utilizamos o bit de paridade par)" << endl;
+        case 0:
+            erroTransmissora = new CTCEParidadePar();
+            erroReceptora = new CRCEParidadePar();
             break;
     }
 }

@@ -6,6 +6,8 @@
 
 int getMenuCodigo();
 int getMenuEnquadramento();
+int getControleErro();
+int getChanceDeErro();
 void insereBytesComoBits(uint8_t, std::vector<uint8_t>*);
 
 #endif // UTILS_HPP

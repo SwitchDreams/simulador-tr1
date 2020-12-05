@@ -11,7 +11,7 @@ using namespace std;
 int main() {
 
     string mensagem;
-    int tipoCodigo, tipoEnquadramento;
+    int tipoCodigo, tipoEnquadramento, tipoErro, chanceErro;
 
     // Recebe a mensagem do usuário
     std::system("clear");
@@ -21,9 +21,11 @@ int main() {
     // Recebe a codificação a ser utilizada
     tipoCodigo = getMenuCodigo();
     tipoEnquadramento = getMenuEnquadramento();
+    tipoErro = getControleErro();
+    chanceErro = getChanceDeErro();
 
     // Instancia uma nova simulação
-    Simulacao *simulacao = new Simulacao(tipoCodigo, tipoEnquadramento);
+    Simulacao *simulacao = new Simulacao(tipoCodigo, tipoEnquadramento, tipoErro, chanceErro);
 
     simulacao->camadaDeAplicacaoTransmissora(mensagem);
 

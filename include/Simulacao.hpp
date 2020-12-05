@@ -5,6 +5,8 @@
 #include "../include/CamadaFisicaReceptora.hpp"
 #include "../include/CamadaEnlaceTransmissora.hpp"
 #include "../include/CamadaEnlaceReceptora.hpp"
+#include "../include/CamadaTransmissoraControleDeErro.hpp"
+#include "../include/CamadaReceptoraControleDeErro.hpp"
 #include "../include/BitArray.hpp"
 #include <string>
 #include <iostream>
@@ -17,8 +19,13 @@ private:
     CamadaEnlaceTransmissora* enlaceTransmissora;
     CamadaEnlaceReceptora* enlaceReceptora;
 
+    CamadaTransmissoraControleDeErro* erroTransmissora;
+    CamadaReceptoraControleDeErro* erroReceptora;
+
+    float propabilidadeErro;
+
 public:
-    Simulacao(int, int);
+    Simulacao(int, int, int, int);
     ~Simulacao();
 
     /**** Transmissão ****/

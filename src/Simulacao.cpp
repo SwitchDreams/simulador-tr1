@@ -61,6 +61,8 @@ Simulacao::Simulacao(int tipoCodificacao, int tipoEnlace, int tipoErro, int chan
             erroReceptora = new CRCEParidadePar();
             break;
     }
+
+    propabilidadeErro = chanceErro;
 }
 
 Simulacao::~Simulacao() {
@@ -93,8 +95,19 @@ void Simulacao::camadaFisicaTransmissora(BitArray* quadro) {
 
 void Simulacao::meioDeComunicacao(BitArray* fluxoBrutoDeBits) {
     // simular os bits passando de um lugar pro outro
+    int tamQuadro = fluxoBrutoDeBits->tam();
+    BitArray *fluxoBrutoDeBitsPontoB = new BitArray(tamQuadro);
 
-    BitArray *fluxoBrutoDeBitsPontoB = fluxoBrutoDeBits;
+    for (int i = 0; i < tamQuadro * BYTE_SIZE; i++) {
+        uint8_t bit = (*fluxoBrutoDeBits)[i];
+
+        if (rand() % 100 > propabilidadeErro) {
+            bit ? fluxoBrutoDeBitsPontoB->setBit(i) : fluxoBrutoDeBitsPontoB->clearBit(i);
+        } else {
+            bit ? fluxoBrutoDeBitsPontoB->clearBit(i) : fluxoBrutoDeBitsPontoB->setBit(i);
+        }
+    }
+
 
     // delete fluxoBrutoDeBits;
     this->camadaFisicaReceptora(fluxoBrutoDeBitsPontoB);
@@ -122,10 +135,12 @@ void Simulacao::camadaDeAplicacaoReceptora(BitArray* fluxoBrutoDeBits) {
 /********************** Enlace *********************/
 
 BitArray* Simulacao::camadaEnlaceTransmissoraEnquadramento(BitArray* quadro) {
-    return enlaceTransmissora->execute(quadro);
+    BitArray *quadroComCodigoDeErro = erroTransmissora->execute(quadro);
+    return enlaceTransmissora->execute(quadroComCodigoDeErro);
 }
 
-BitArray* Simulacao::camadaEnlaceReceptoraEnquadramento(BitArray* quadro) {
+BitArray* Simulacao::camadaEnlaceReceptoraEnquadramento(BitArray* quadroComCodigoDeErro) {
+    BitArray *quadro = erroReceptora->execute(quadroComCodigoDeErro);
     return enlaceReceptora->execute(quadro);
 }
 

@@ -22,7 +22,7 @@ private:
     CamadaTransmissoraControleDeErro* erroTransmissora;
     CamadaReceptoraControleDeErro* erroReceptora;
 
-    float propabilidadeErro;
+    int propabilidadeErro;
 
 public:
     Simulacao(int, int, int, int);

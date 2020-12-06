@@ -27,6 +27,7 @@ private:
     uint8_t *container;
     unsigned int lenght; //!< Tamanho do BitArray em bytes
 public:
+    unsigned int lenghtBits;
     /**
      * @brief Inicializa o BitArray
      * Esse construtor recebe de parâmetro uma string e inicializa o ponteiro do container, convertendo cada char em

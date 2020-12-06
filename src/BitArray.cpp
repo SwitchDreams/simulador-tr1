@@ -16,6 +16,7 @@ BitArray::BitArray(const string &mensagem) {
 }
 
 BitArray::BitArray(int tam) {
+    this->lenghtBits = tam;
     int numBytes = ceil( (float) tam / BYTE_SIZE); // Aproxima a quantidade de bytes para cima
 
     // Aloca o espaço de memória para o container com todos valores 0

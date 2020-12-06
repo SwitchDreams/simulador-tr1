@@ -1,6 +1,6 @@
 #include "../include/CamadaTransmissoraControleDeErro.hpp"
 #include <cmath>
-
+#include "../include/Utils.hpp"
 BitArray *CTCEParidade::execute(BitArray *quadro, bool isPar) {
     // Caso a quantidade de bits 1 seja par
     auto quadroComBitDeParidade = new BitArray((quadro->tam() + 1) * BYTE_SIZE);
@@ -38,9 +38,6 @@ BitArray *CTCECRC::execute(BitArray *quadro) {
     return quadro;
 }
 
-bool isPow2(unsigned int v) {
-    return v && !(v & (v - 1));
-}
 
 BitArray *CTCEHamming::execute(BitArray *quadro) {
 
@@ -82,46 +79,38 @@ BitArray *CTCEHamming::execute(BitArray *quadro) {
     //palavraDeCodigo->print();
     std::cout << std::endl;
 
-    int coversBits; // Covers 2^îndex bi    ts
-    int contBits; // Conta quantos bits foram pulados ou colocados
-    int contOnes; // Conta a quantidade de uns
-    bool jmp; // Varíavel que guarda a informação se é para pular ou prencher o bit
-    // Para cada bit rendundante
-    for (unsigned int i = 0; i < r; i++) {
-        coversBits = (int) pow(2, i);
-        contBits = 0;
-        contOnes = 0;
-        jmp = true;
-        for (unsigned int j = 0; j < tamBits; j++) {
-            if (contBits == coversBits) {
-                contBits = 0; // Reseta o contador de bits
-                jmp = !jmp;// Toogle jmp
+    for (unsigned int i = 0; i < (tamBits + r); i++) {
+        // Caso não seja redundante continua
+        if (!isPow2(i + 1))
+            continue;
+
+        int x = (int) log2(i + 1);
+        int one_count = 0;
+
+        for (int j = i + 2;
+             j <= (r + tamBits); ++j) {
+
+            if (j & (1 << x)) {
+                if ((*palavraDeCodigo)[j - 1]) {
+                    one_count++;
+                }
             }
-            // Caso o bit seja 1 e não é para pular
-            if (!jmp and (*palavraDeCodigo)[j]) {
-                contOnes++;
-            }
-            contBits++;
         }
 
-        if (contOnes % 2 == 0) {
-            palavraDeCodigo->clearBit((int) pow(2, i) - 1);
+        // Generating hamming code for
+        // even parity
+        if (one_count % 2 == 0) {
+            palavraDeCodigo->clearBit(i);
         } else {
-            palavraDeCodigo->setBit((int) pow(2, i) - 1);
+            palavraDeCodigo->setBit(i);
         }
     }
 
     std::cout << "Palavra de código (Hamming Code): ";
-    palavraDeCodigo->print();
-    /*for (unsigned int i = 0; i < palavraDeCodigo->tam() * BYTE_SIZE; i++) {
+    //palavraDeCodigo->print();
+    for (unsigned int i = 0; i < palavraDeCodigo->tam() * BYTE_SIZE; i++) {
         std::cout << (*palavraDeCodigo)[i]; // Printa o bit no terminal
-    }*/
+    }
     std::cout << std::endl;
     return palavraDeCodigo;
 }
-
-
-// 10010110
-
-// PPDPDDDP DDDDDDDDDD
-// 00100010 0110

@@ -32,7 +32,7 @@ int getControleErro() {
     std::cout << std::endl << "Tipos de controle de erro: " << std::endl << std::endl;
     std::cout << "0) Bit de paridade par" << std::endl;
     std::cout << "1) Bit de paridade ímpar" << std::endl;
-    std::cout << "1) CRC (Cyclic Redundancy Check) - 32 bits" << std::endl;
+    std::cout << "2) CRC (Cyclic Redundancy Check) - 32 bits" << std::endl;
     std::cout << "2) Código de Hamming" << std::endl << std::endl;
     std::cout << "Digite o tipo de controle de erro que iremos utilizar: ";
     std::cin >> tipo_erro;

@@ -32,7 +32,7 @@ unsigned int BitArray::getByte(uint8_t posicao) {
 }
 
 
-unsigned int BitArray::getCabecalho(){
+unsigned int BitArray::getCabecalho() {
     return this->container[0];
 }
 
@@ -82,10 +82,32 @@ string BitArray::toString() {
 void BitArray::print() {
     // Para cada bit do array
     for (unsigned int i = 0; i < this->lenght; i++) {
-        for(int j = BYTE_SIZE - 1; j >= 0 ; j--) {
-            cout << (*this)[i*8 + j]; // Printa o bit no terminal
+        for (int j = BYTE_SIZE - 1; j >= 0; j--) {
+            cout << (*this)[i * 8 + j]; // Printa o bit no terminal
         }
         cout << " ";
     }
     cout << endl;
 }
+
+unsigned int BitArray::contBitsOne() {
+    unsigned int cont = 0;
+    unsigned int tamBits = this->tam() * BYTE_SIZE;
+    for (unsigned int i = 0; i < tamBits; i++) {
+        if ((*this)[i] == 1) {
+            cont++;
+        }
+    }
+    return cont;
+}
+
+void BitArray::copyBits(BitArray *array) {
+    for (unsigned int i = 0; i < this->lenght * BYTE_SIZE; i++) {
+        if ((*array)[i]) {
+            setBit(i);
+        } else {
+            clearBit(i);
+        }
+    }
+}
+

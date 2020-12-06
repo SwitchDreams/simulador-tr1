@@ -111,6 +111,13 @@ public:
     */
     void print();
 
+    /**
+     * @brief Conta a quantidade de uns
+     * @return unsigned int com a quantidade de 1 no quadro
+     */
+     unsigned int contBitsOne();
+
+     void copyBits(BitArray*);
 };
 
 #endif // BIT_ARRAY_HPP

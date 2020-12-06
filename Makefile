@@ -57,7 +57,7 @@ else
 	@mkdir -p $(DEP_PATH) $(BIN_PATH)
 endif
 
-	$(CC) $(DEP_FLAGS) -c -o $@ $< $(DIRECTIVES)
+	$(CC) $(DEP_FLAGS) -c -o $@ $< $(DIRECTIVES
 
 print-% : ; @echo $* = $($*)
 

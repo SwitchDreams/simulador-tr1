@@ -1,6 +1,6 @@
 #include <iostream>
 #include "../include/BitArray.hpp"
-
+#include <cmath>
 using namespace std;
 
 BitArray::BitArray(const string &mensagem) {
@@ -16,7 +16,7 @@ BitArray::BitArray(const string &mensagem) {
 }
 
 BitArray::BitArray(int tam) {
-    int numBytes = tam / BYTE_SIZE;
+    int numBytes = ceil( (float) tam / BYTE_SIZE); // Aproxima a quantidade de bytes para cima
 
     // Aloca o espaço de memória para o container com todos valores 0
     this->container = (uint8_t *) calloc(numBytes, sizeof(uint8_t));

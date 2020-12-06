@@ -1,10 +1,21 @@
-# Simulador Camada Física - Universidade de Brasília
+# Simulador das Camadas Física, de Enlace e Controle de Erros - Universidade de Brasília
 
-Trabalho da disciplina Teleinformática e Redes I (204315) ministrada pelo Prof. Doutor Geraldo Pereira que consiste em simular o funcionamento da camada física por meio da implementação dos seguintes protocolos: 
+Trabalho da disciplina Teleinformática e Redes I (204315) ministrada pelo Prof. Doutor Geraldo Pereira que consiste em simular o funcionamento da camada física, camada de enlace e controle de erros por meio da implementação dos seguintes protocolos: 
 
+Camada Física:
 - Binário; 
 - Manchester; 
 - Manchester Diferencial. 
+
+Camada de Enlace:
+- Contagem de Caracteres;
+- Inserção por Bytes;
+- Inserção por Bits.
+
+Controle de Erros:
+- Bit de paridade (par e ímpar);
+- CRC;
+- Código de Hamming.
 
 ## Compilação e Execução
 

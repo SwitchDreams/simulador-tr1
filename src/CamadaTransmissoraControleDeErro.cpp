@@ -21,6 +21,7 @@ BitArray *CTCEParidade::execute(BitArray *quadro, bool isPar) {
 
     std::cout << "Adição de bit de paridade:";
     quadroComBitDeParidade->print();
+    std::cout << std::endl;
     return quadroComBitDeParidade;
 }
 

@@ -96,7 +96,7 @@ void Simulacao::camadaFisicaTransmissora(BitArray* quadro) {
 void Simulacao::meioDeComunicacao(BitArray* fluxoBrutoDeBits) {
     // simular os bits passando de um lugar pro outro
     int tamQuadro = fluxoBrutoDeBits->tam();
-    BitArray *fluxoBrutoDeBitsPontoB = new BitArray(tamQuadro);
+    BitArray *fluxoBrutoDeBitsPontoB = new BitArray(tamQuadro * BYTE_SIZE);
 
     for (int i = 0; i < tamQuadro * BYTE_SIZE; i++) {
         uint8_t bit = (*fluxoBrutoDeBits)[i];
@@ -140,7 +140,7 @@ BitArray* Simulacao::camadaEnlaceTransmissoraEnquadramento(BitArray* quadro) {
 }
 
 BitArray* Simulacao::camadaEnlaceReceptoraEnquadramento(BitArray* quadroComCodigoDeErro) {
-    BitArray *quadro = erroReceptora->execute(quadroComCodigoDeErro);
-    return enlaceReceptora->execute(quadro);
+    BitArray *quadro = enlaceReceptora->execute(quadroComCodigoDeErro) ;
+    return erroReceptora->execute(quadro);
 }
 

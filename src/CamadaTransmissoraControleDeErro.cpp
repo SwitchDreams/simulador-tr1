@@ -35,7 +35,51 @@ BitArray *CTCEParidadeImpar::execute(BitArray *quadro) {
 }
 
 BitArray *CTCECRC::execute(BitArray *quadro) {
-    return quadro;
+
+    std::vector<int> quadroComCRC, restoCRC;
+    for (int i = 0; i < quadro->tam() * BYTE_SIZE; i++) {
+        quadroComCRC.push_back((*quadro)[i]);
+    }
+
+    uint32_t resto = 0xFFFFFFFF;
+    for (int i = 0; i < quadro->tam(); i++) {
+        uint32_t byte = quadro->getByte(i);
+
+        for (int j = 0; j < BYTE_SIZE; j++) {
+            uint32_t bit = (byte xor resto)&1;
+            resto >>= 1;
+
+            if (bit) {
+                resto = resto xor CRC_POLYNOMIAL;
+            }
+            byte >>=1;
+        }
+    }
+
+    resto ^= 0xFFFFFFFF;
+    
+    for (int i = 1; i < CRC_SIZE; i++) {
+        restoCRC.push_back((resto & ( 1 << i )) >> i);
+    }
+
+    quadroComCRC.insert(quadroComCRC.end(), restoCRC.begin(), restoCRC.end());
+
+    BitArray* bitArrayCRC = new BitArray(quadroComCRC.size());
+    for (int i = 0; i < quadroComCRC.size(); i++) {
+        quadroComCRC[i] ? bitArrayCRC->setBit(i) : bitArrayCRC->clearBit(i);
+    }
+
+    std::cout << "Polinômio CRC utilizado: " << CRC_POLYNOMIAL << " (11101101101110001000001100100000)" << std::endl;
+    std::cout << "Resto da divisão: ";
+    for (auto bit : restoCRC) {
+        std::cout << bit;
+    }
+    std::cout << std::endl;
+    std::cout << "Quadro completo: ";
+    bitArrayCRC->print();
+    std::cout << std::endl;
+
+    return bitArrayCRC;
 }
 
 

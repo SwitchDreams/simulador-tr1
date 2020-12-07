@@ -11,6 +11,8 @@
 #define BIT_8 (uint8_t) 0b10000000
 #define BIT_1 (uint8_t) 0x01
 #define TAM_QUADRO BYTE_SIZE
+#define CRC_POLYNOMIAL 0xEDB88320
+#define CRC_SIZE 32
 
 
 /*

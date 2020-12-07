@@ -56,23 +56,24 @@ BitArray *CRCEHamming::execute(BitArray *quadro) {
         one_count += (*quadro)[i];
         // Caso seja impar
         if (one_count % 2 == 1) {
-            correctSum += (int) pow(2, i);
+            correctSum += x;
         }
     }
 
     if (correctSum != 0) {
-        std::cout << "Recebido antes de corrigir: ";
-        quadro->print();
-        std::cout << std::endl;
-
         int correctIndex = correctSum - 1;
-        std::cout << "Aconteceu erro na transmissão, na posição: " << correctIndex << std::endl;
+        std::cout << "Aconteceu erro na transmissão, na posição: " << correctIndex+1 << std::endl;
         std::cout << "Caso tenha ocorrido erro em mais de um bit, essa posição pode estar equivocada." << std::endl;
+
+        std::cout << std::endl << "A leitura deve ser feita levando em consideração que estão em formato MSB para facilitar a compreensão do algoritmo";
+        std::cout << std::endl << "Recebido antes de corrigir: ";
+        quadro->printMSB();
+
         // Correção do erro
         (*quadro)[correctIndex] ? quadro->clearBit(correctIndex) : quadro->setBit(correctIndex);
 
-        std::cout << "Corrigido: ";
-        quadro->print();
+        std::cout << "Corrigido:                  ";
+        quadro->printMSB();
         std::cout << std::endl;
     } else {
         std::cout << "Sucesso na transmissão" << std::endl;

@@ -41,24 +41,25 @@ BitArray *CTCECRC::execute(BitArray *quadro) {
         quadroComCRC.push_back((*quadro)[i]);
     }
 
-    uint32_t aux = 0xFFFFFFFF;
+    uint32_t resto = 0xFFFFFFFF;
     for (int i = 0; i < quadro->tam(); i++) {
         uint32_t byte = quadro->getByte(i);
 
         for (int j = 0; j < BYTE_SIZE; j++) {
-            uint32_t bit = (byte xor aux)&1;
-            aux >>= 1;
+            uint32_t bit = (byte xor resto)&1;
+            resto >>= 1;
 
             if (bit) {
-                aux = aux xor CRC_POLYNOMIAL;
+                resto = resto xor CRC_POLYNOMIAL;
             }
             byte >>=1;
         }
     }
 
-    aux ^= 0xFFFFFFFF;
-    for (int i = 0; i < CRC_SIZE - 1; i++) {
-        restoCRC.push_back((aux & ( 1 << i )) >> i);
+    resto ^= 0xFFFFFFFF;
+    
+    for (int i = 1; i < CRC_SIZE; i++) {
+        restoCRC.push_back((resto & ( 1 << i )) >> i);
     }
 
     quadroComCRC.insert(quadroComCRC.end(), restoCRC.begin(), restoCRC.end());
@@ -77,7 +78,7 @@ BitArray *CTCECRC::execute(BitArray *quadro) {
     std::cout << "Quadro completo: ";
     bitArrayCRC->print();
     std::cout << std::endl;
-    
+
     return bitArrayCRC;
 }
 

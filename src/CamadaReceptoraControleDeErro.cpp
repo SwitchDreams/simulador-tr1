@@ -27,7 +27,50 @@ BitArray *CRCEParidadeImpar::execute(BitArray *quadro) {
 }
 
 BitArray *CRCECRC::execute(BitArray *quadro) {
-    return quadro;
+
+    std::vector<int> originalCRC, restoCRC;
+    int tam = quadro->tam() - 4;
+    for (int i = tam*BYTE_SIZE; i < quadro->tam()*BYTE_SIZE; i++) {
+        originalCRC.push_back((*quadro)[i]);
+    }
+    // Remove o zero extra adicionado pelo construtor da bitarray
+    originalCRC.pop_back();
+
+    uint32_t resto = 0xFFFFFFFF, crcOriginal = 0;
+    for (int i = 0; i < quadro->tam() - 4; i++) {
+        uint32_t byte = quadro->getByte(i);
+
+        for (int j = 0; j < BYTE_SIZE; j++) {
+            uint32_t bit = (byte xor resto)&1;
+            resto >>= 1;
+
+            if (bit) {
+                resto = resto xor CRC_POLYNOMIAL;
+            }
+            byte >>=1;
+        }
+    }
+
+    resto ^= 0xFFFFFFFF;
+
+    int cont = 1;
+    for (int bit : originalCRC) {
+        crcOriginal += pow(2, cont) * bit;
+        cont++;
+    }
+
+    if (resto != crcOriginal) {
+        std::cout << "Erro na transmissão da mensagem. Os CRCs não batem." << std::endl << sdt::endl;
+    }
+
+    BitArray* mensagem = new BitArray((quadro->tam() - 4) * BYTE_SIZE);
+    for (int i = 0; i < (quadro->tam() - 4) * BYTE_SIZE; i++) {
+        uint8_t bit = (*quadro)[i];
+
+        bit ? mensagem->setBit(i) : mensagem->clearBit(i);
+    }
+
+    return mensagem;
 }
 
 BitArray *CRCEHamming::execute(BitArray *quadro) {

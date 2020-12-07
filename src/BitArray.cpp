@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../include/BitArray.hpp"
 #include <cmath>
+
 using namespace std;
 
 BitArray::BitArray(const string &mensagem) {
@@ -17,7 +18,7 @@ BitArray::BitArray(const string &mensagem) {
 
 BitArray::BitArray(int tam) {
     this->lenghtBits = tam;
-    int numBytes = ceil( (float) tam / BYTE_SIZE); // Aproxima a quantidade de bytes para cima
+    int numBytes = ceil((float) tam / BYTE_SIZE); // Aproxima a quantidade de bytes para cima
 
     // Aloca o espaço de memória para o container com todos valores 0
     this->container = (uint8_t *) calloc(numBytes, sizeof(uint8_t));
@@ -87,6 +88,17 @@ void BitArray::print() {
             cout << (*this)[i * 8 + j]; // Printa o bit no terminal
         }
         cout << " ";
+    }
+    cout << endl;
+}
+
+void BitArray::printMSB() {
+    // Para cada bit do array
+    for (unsigned int i = 0; i < this->lenght * BYTE_SIZE; i++) {
+        cout << (*this)[i];
+        if ((i+1) % 8 == 0) {
+            cout << " ";
+        }
     }
     cout << endl;
 }

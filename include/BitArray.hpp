@@ -111,6 +111,7 @@ public:
     * @brief Printa no terminal o array de bits
     */
     void print();
+    void printMSB();
 
     /**
      * @brief Conta a quantidade de uns

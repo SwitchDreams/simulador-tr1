@@ -1,5 +1,3 @@
-# TR1
-
 CC = g++
 RMDIR = rm -rf
 RM = rm -f

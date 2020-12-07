@@ -10,12 +10,17 @@ public:
     virtual BitArray *execute(BitArray *) = 0;
 };
 
-class CRCEParidadePar : public CamadaReceptoraControleDeErro {
+class CRCEParidade : public CamadaReceptoraControleDeErro {
+public:
+    BitArray* execute(BitArray *, bool isPar);
+};
+
+class CRCEParidadePar : public CRCEParidade {
 public:
     BitArray* execute(BitArray *) override;
 };
 
-class CRCEParidadeImpar : public CamadaReceptoraControleDeErro {
+class CRCEParidadeImpar : public CRCEParidade {
 public:
     BitArray* execute(BitArray *) override;
 };

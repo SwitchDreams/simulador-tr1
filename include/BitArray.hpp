@@ -11,6 +11,8 @@
 #define BIT_8 (uint8_t) 0b10000000
 #define BIT_1 (uint8_t) 0x01
 #define TAM_QUADRO BYTE_SIZE
+#define CRC_POLYNOMIAL 0xEDB88320
+#define CRC_SIZE 32
 
 
 /*
@@ -27,6 +29,7 @@ private:
     uint8_t *container;
     unsigned int lenght; //!< Tamanho do BitArray em bytes
 public:
+    unsigned int lenghtBits;
     /**
      * @brief Inicializa o BitArray
      * Esse construtor recebe de parâmetro uma string e inicializa o ponteiro do container, convertendo cada char em
@@ -110,7 +113,15 @@ public:
     * @brief Printa no terminal o array de bits
     */
     void print();
+    void printMSB();
 
+    /**
+     * @brief Conta a quantidade de uns
+     * @return unsigned int com a quantidade de 1 no quadro
+     */
+     unsigned int contBitsOne();
+
+     void copyBits(BitArray*);
 };
 
 #endif // BIT_ARRAY_HPP

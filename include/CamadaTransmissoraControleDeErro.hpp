@@ -10,12 +10,17 @@ public:
     virtual BitArray *execute(BitArray *) = 0;
 };
 
-class CTCEParidadePar : public CamadaTransmissoraControleDeErro {
+class CTCEParidade : public CamadaTransmissoraControleDeErro {
+public:
+    BitArray* execute(BitArray *, bool isPar);
+};
+
+class CTCEParidadePar : public CTCEParidade {
 public:
     BitArray* execute(BitArray *) override;
 };
 
-class CTCEParidadeImpar : public CamadaTransmissoraControleDeErro {
+class CTCEParidadeImpar : public CTCEParidade {
 public:
     BitArray* execute(BitArray *) override;
 };

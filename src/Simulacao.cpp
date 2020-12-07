@@ -1,4 +1,5 @@
 #include "../include/Simulacao.hpp"
+#include <cstdlib>
 
 using namespace std;
 
@@ -78,7 +79,7 @@ void Simulacao::camadaDeAplicacaoTransmissora(string mensagem) {
     std::cout << std::endl << "Mensagem original: ";
     quadro->print();
     std::cout << std::endl;
-    
+
     BitArray *retornoEnquadramento = this->camadaEnlaceTransmissoraEnquadramento(quadro);
     // delete quadro;
     this->camadaFisicaTransmissora(retornoEnquadramento);
@@ -97,11 +98,11 @@ void Simulacao::meioDeComunicacao(BitArray* fluxoBrutoDeBits) {
     // simular os bits passando de um lugar pro outro
     int tamQuadro = fluxoBrutoDeBits->tam();
     BitArray *fluxoBrutoDeBitsPontoB = new BitArray(tamQuadro * BYTE_SIZE);
-
+    srand(time(NULL));
     for (int i = 0; i < tamQuadro * BYTE_SIZE; i++) {
         uint8_t bit = (*fluxoBrutoDeBits)[i];
-
-        if (rand() % 100 > propabilidadeErro) {
+        int randnum = std::rand() % 100;
+        if (randnum > propabilidadeErro) {
             bit ? fluxoBrutoDeBitsPontoB->setBit(i) : fluxoBrutoDeBitsPontoB->clearBit(i);
         } else {
             bit ? fluxoBrutoDeBitsPontoB->clearBit(i) : fluxoBrutoDeBitsPontoB->setBit(i);

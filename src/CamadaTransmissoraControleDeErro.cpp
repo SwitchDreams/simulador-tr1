@@ -72,13 +72,6 @@ BitArray *CTCEHamming::execute(BitArray *quadro) {
         }
     }
 
-    std::cout << "Primeira parte: ";
-    for (unsigned int i = 0; i < palavraDeCodigo->tam() * BYTE_SIZE; i++) {
-        std::cout << (*palavraDeCodigo)[i]; // Printa o bit no terminal
-    }
-    //palavraDeCodigo->print();
-    std::cout << std::endl;
-
     for (unsigned int i = 0; i < (tamBits + r); i++) {
         // Caso não seja redundante continua
         if (!isPow2(i + 1))
@@ -106,11 +99,9 @@ BitArray *CTCEHamming::execute(BitArray *quadro) {
         }
     }
 
+    std::cout << "A leitura deve ser feita levando em consideração que estão em formato MSB para facilitar a compreensão do algoritmo" << std::endl;
     std::cout << "Palavra de código (Hamming Code): ";
-    //palavraDeCodigo->print();
-    for (unsigned int i = 0; i < palavraDeCodigo->tam() * BYTE_SIZE; i++) {
-        std::cout << (*palavraDeCodigo)[i]; // Printa o bit no terminal
-    }
+    palavraDeCodigo->printMSB();
     std::cout << std::endl;
     return palavraDeCodigo;
 }

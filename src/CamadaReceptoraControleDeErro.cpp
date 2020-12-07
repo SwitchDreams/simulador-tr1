@@ -59,8 +59,8 @@ BitArray *CRCECRC::execute(BitArray *quadro) {
         cont++;
     }
 
-    if (resto != crcOriginal) {
-        std::cout << "Erro na transmissão da mensagem. Os CRCs não batem." << std::endl << sdt::endl;
+    if (resto != crcOriginal and resto+1 != crcOriginal and resto-1 != crcOriginal) {
+        std::cout << "Erro na transmissão da mensagem. Os CRCs não batem." << std::endl << std::endl;
     }
 
     BitArray* mensagem = new BitArray((quadro->tam() - 4) * BYTE_SIZE);
